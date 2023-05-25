@@ -142,7 +142,7 @@ function App() {
 			} else if (spans.length === 1 && current.value.length === 1 && current.value !== "0") {
 				spans[current.id].value = "0";
 				setDisplaySapns(spans);
-			} else if (current.value.length > 0) {
+			} else if (current.value.length > 0 && current.value.length !== 1) {
 				spans[current.id].value = current.value.slice(0, current.value.length - 1);
 				setDisplaySapns(spans);
 			}
