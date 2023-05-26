@@ -63,3 +63,25 @@ test("Calculator Check Div", async () => {
 	).toBe(3);
 	await page.screenshot({ path: "e2e/screenshots/checkDiv.png" });
 });
+
+test("Calculator Check Operations", async () => {
+	await page.getByRole("button", { name: "C" }).click();
+	await page.getByRole("button", { name: "8" }).click();
+	await page.getByRole("button", { name: "+" }).click();
+	await page.getByRole("button", { name: "9" }).click();
+	await page.getByRole("button", { name: "÷" }).click();
+	await page.getByRole("button", { name: "3" }).click();
+	await page.getByRole("button", { name: "-" }).click();
+	await page.getByRole("button", { name: "3" }).click();
+	await page.getByRole("button", { name: "x" }).click();
+	await page.getByRole("button", { name: "2" }).click();
+	await page.getByRole("button", { name: "=" }).click();
+	expect(
+		await page.evaluate(async () => {
+			const lastSpan: HTMLSpanElement | null = document.querySelector(".result span:last-of-type");
+			const result = lastSpan ? Number(lastSpan.innerText) : 0;
+			return result;
+		}),
+	).toBe(5);
+	await page.screenshot({ path: "e2e/screenshots/checkOperations.png" });
+});
