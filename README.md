@@ -9,6 +9,6 @@ Calculadora creada con react. Se puede compilar para cualquier Sistema Operativo
 -   Run dev enviroment: `yarn dev`
 -   Build release: `yarn build`
 
-### Test Case
+### Test Cases ✔TODO
 
--   ✔TODO Doing test cases
+-   Run command: `yarn e2e`
