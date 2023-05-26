@@ -47,3 +47,19 @@ test("Calculator Check Mult", async () => {
 	).toBe(6);
 	await page.screenshot({ path: "e2e/screenshots/checkMult.png" });
 });
+
+test("Calculator Check Div", async () => {
+	await page.getByRole("button", { name: "C" }).click();
+	await page.getByRole("button", { name: "9" }).click();
+	await page.getByRole("button", { name: "÷" }).click();
+	await page.getByRole("button", { name: "3" }).click();
+	await page.getByRole("button", { name: "=" }).click();
+	expect(
+		await page.evaluate(async () => {
+			const lastSpan: HTMLSpanElement | null = document.querySelector(".result span:last-of-type");
+			const result = lastSpan ? Number(lastSpan.innerText) : 0;
+			return result;
+		}),
+	).toBe(3);
+	await page.screenshot({ path: "e2e/screenshots/checkDiv.png" });
+});
