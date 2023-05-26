@@ -31,3 +31,19 @@ test("Calculator Check Sum", async () => {
 	).toBe(18);
 	await page.screenshot({ path: "e2e/screenshots/checkSum.png" });
 });
+
+test("Calculator Check Mult", async () => {
+	await page.getByRole("button", { name: "C" }).click();
+	await page.getByRole("button", { name: "2" }).click();
+	await page.getByRole("button", { name: "x" }).click();
+	await page.getByRole("button", { name: "3" }).click();
+	await page.getByRole("button", { name: "=" }).click();
+	expect(
+		await page.evaluate(async () => {
+			const lastSpan: HTMLSpanElement | null = document.querySelector(".result span:last-of-type");
+			const result = lastSpan ? Number(lastSpan.innerText) : 0;
+			return result;
+		}),
+	).toBe(6);
+	await page.screenshot({ path: "e2e/screenshots/checkMult.png" });
+});
